@@ -622,7 +622,20 @@
       ],
       "verified": true,
       "verifiedAt": "2026-09-02T07:00:43.676Z"
+    },
+    {
+      "id": "inc-11",
+      "title": "Spec sheet and utilization chart",
+      "objective": "Render the spec sheet and a 24-hour inline-SVG utilization line chart with hover tooltip.",
+      "filesTouched": [],
+      "acceptanceCriteria": [
+        "Spec sheet shows chip, memory, TFLOPS, rate, and status",
+        "Hovering the chart shows a tooltip with hour and percentage",
+        "A text summary alternative for the chart is present"
+      ],
+      "verified": true,
+      "verifiedAt": "2026-09-02T07:14:34.756Z"
     }
   ],
-  "updatedAt": "2026-09-02T07:00:43.676Z"
+  "updatedAt": "2026-09-02T07:14:34.756Z"
 }
