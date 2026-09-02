@@ -531,7 +531,20 @@
       ],
       "verified": true,
       "verifiedAt": "2026-09-02T05:41:56.918Z"
+    },
+    {
+      "id": "inc-4",
+      "title": "Pricing math",
+      "objective": "Implement pure pricing: 15-min round-up, 1-hr minimum, 10% off hours beyond 24, all integer cents.",
+      "filesTouched": [],
+      "acceptanceCriteria": [
+        "A 10-minute reservation bills as 1 hour",
+        "A 25-hour reservation applies 10% off only the 25th hour",
+        "Vitest covers round-up, minimum, and over-24h discount"
+      ],
+      "verified": true,
+      "verifiedAt": "2026-09-02T05:54:42.567Z"
     }
   ],
-  "updatedAt": "2026-09-02T05:41:56.918Z"
+  "updatedAt": "2026-09-02T05:54:42.567Z"
 }
