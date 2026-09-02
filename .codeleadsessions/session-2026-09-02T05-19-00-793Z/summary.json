@@ -1,0 +1,24 @@
+{
+  "sessionId": "session-2026-09-02T05-19-00-793Z",
+  "repoRoot": "/Users/peter/Projects/codelead-bench/k3-full/silicon-exchange-2026-09-02T05-12-15-r1",
+  "startedAt": "2026-09-02T05:19:00.793Z",
+  "endedAt": null,
+  "status": "active",
+  "commandsRun": 0,
+  "commands": {
+    "total": 0,
+    "completed": 0,
+    "failed": 0,
+    "cancelled": 0,
+    "exited": 0,
+    "unknown": 0
+  },
+  "modelCalls": 0,
+  "lastCommand": null,
+  "greenfield": {
+    "hasPlan": false,
+    "projectName": null,
+    "status": null,
+    "stepCount": 0
+  }
+}

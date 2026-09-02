@@ -1,0 +1,497 @@
+{
+  "version": 1,
+  "request": "Build a production-ready, visually stunning front-end web app for a fictional\ncompany: \"SILICON EXCHANGE\" — a marketplace where people rent out idle GPUs and\nAI accelerators by the hour. Renters browse listings, inspect utilization\ncharts, and reserve time blocks.\n\nFRONT END ONLY. No backend, no database, no auth. All data is mock data defined\nin code, but the app must behave like the real thing — the reservation logic,\nthe pricing math, and the filter state all have to actually work.\n\nTECH STACK: Vite + React + TypeScript (strict). react-router-dom for routes.\nPlain CSS with design tokens (no CSS framework). Charts are hand-rolled inline\nSVG. React context + reducer for shared state. Vitest for unit tests. Zero paid\nservices and zero external network requests at runtime.\n\nMOCK DATA (typed, deterministic, defined in src/data):\n- 24 listings across at least 5 regions, with realistic chips (H100, RTX 5090,\n  M3 Ultra, MI300X, RTX Pro 6000, etc.), memory in GB, TFLOPS, hourly rate in\n  integer cents, and a status of \"available\" | \"maintenance\" | \"retired\".\n- Hourly utilization samples per listing (0-100%), generated from a seeded\n  pseudo-random function so charts look organic but render identically on every\n  reload. Do NOT use Math.random() at render time.\n- A handful of pre-existing reservations, including at least one that a naive\n  overlap check would wrongly allow.\n\nTHE HARD PART — these rules must be pure, tested TypeScript functions:\n1. Overlap detection. A listing cannot hold two reservations whose time ranges\n   overlap. Ranges are half-open: a reservation ending at 14:00 and one starting\n   at 14:00 do NOT overlap. Cancelled reservations don't count.\n2. Pricing. Billed in 15-minute increments, always rounded UP. Minimum billable\n   block is 1 hour. Any reservation longer than 24 continuous hours gets 10% off\n   every hour beyond the 24th — not off the whole booking. All money is integer\n   cents. Never use floating point for money.\n3. Holds expire. A reservation held for more than 10 minutes without being\n   confirmed flips to \"expired\" and frees its slot. Drive this off a real timer\n   in the UI with a visible countdown.\n4. Maintenance blocks new reservations but leaves existing confirmed ones alone.\n5. Reservations persist to localStorage and survive a full page reload.\n\nPAGES / ROUTES:\n1) \"/\" Home — hero, a \"GPUs online\" counter computed from the real mock data,\n   three feature cards, CTA into browse.\n2) \"/browse\" — grid of listing cards with working search, region filter, memory\n   range filter, status filter, and sort (price, memory, TFLOPS, utilization).\n   Filter state lives in the URL query string and must survive a refresh AND the\n   browser back button. Show an empty state when filters match nothing.\n3) \"/listings/:slug\" — spec sheet, a 24-hour utilization line chart with a\n   working hover tooltip, a 7-day availability calendar that visually blocks out\n   taken slots, and a reservation form with a live price quote that recalculates\n   as the user adjusts the time range. Show the pricing breakdown — base hours,\n   rounding applied, discount applied.\n4) \"/dashboard\" — the user's reservations from localStorage, with countdown\n   timers on held ones, cancel buttons, and a running total spend.\n5) \"/compare\" — pick up to 3 listings and diff their specs side by side.\n   Selection persists across navigation.\n6) A custom, on-brand not-found page (not the default).\n\nDESIGN DIRECTION: Dark-first with a real light mode toggle that persists and\ndoes not flash on reload. Technical-industrial: near-black surfaces, thin\nhairline borders, monospace for all numbers and IDs, one electric accent color\nused sparingly. Data-dense but calm — a trading terminal, not a SaaS template.\nHover lift on cards, visible focus states, smooth transitions. Responsive from\n375px to 4K; tables collapse into cards on mobile; charts stay readable on a\nphone. Accessibility: keyboard navigation, semantic headings, labelled form\ncontrols, aria labels on icon buttons, and a text summary alternative for every\nchart. No stock photography and no external image or font requests — every\nvisual is inline SVG or CSS; the app renders perfectly with the network off.\n\nTESTS (must actually pass — npm test): Vitest unit tests covering at minimum\noverlap detection including the half-open boundary case, the 15-minute\nround-up, the 1-hour minimum, the over-24-hour discount applied only to the\nexcess hours, hold expiry at the 10-minute boundary, and the filter/sort logic\nreturning correct results for a combined query.\n\nQUALITY BAR: Production-ready. No TODO comments, no stubbed functions, no any\ntypes, no Lorem Ipsum, no dead buttons. Every control does something. npm\ninstall, npm test, npm run build, npm run dev must all succeed.",
+  "plannedIncrements": [
+    {
+      "id": "inc-1",
+      "title": "App shell"
+    },
+    {
+      "id": "inc-2",
+      "title": "Typed mock data",
+      "ownedFiles": [
+        "src/modules/TypedMockData.tsx"
+      ]
+    },
+    {
+      "id": "inc-3",
+      "title": "Overlap detection",
+      "ownedFiles": [
+        "src/modules/OverlapDetection.tsx"
+      ]
+    },
+    {
+      "id": "inc-4",
+      "title": "Pricing math",
+      "ownedFiles": [
+        "src/modules/PricingMath.tsx"
+      ]
+    },
+    {
+      "id": "inc-5",
+      "title": "Hold expiry",
+      "ownedFiles": [
+        "src/modules/HoldExpiry.tsx"
+      ]
+    },
+    {
+      "id": "inc-6",
+      "title": "Maintenance blocking",
+      "ownedFiles": [
+        "src/modules/MaintenanceBlocking.tsx"
+      ]
+    },
+    {
+      "id": "inc-7",
+      "title": "Filter and sort logic",
+      "ownedFiles": [
+        "src/modules/FilterAndSortLogic.tsx"
+      ]
+    },
+    {
+      "id": "inc-8",
+      "title": "Shared state and persistence",
+      "ownedFiles": [
+        "src/modules/SharedStateAndPersistence.tsx"
+      ]
+    },
+    {
+      "id": "inc-9",
+      "title": "Home page",
+      "ownedFiles": [
+        "src/modules/HomePage.tsx"
+      ],
+      "route": "/"
+    },
+    {
+      "id": "inc-10",
+      "title": "Browse page",
+      "ownedFiles": [
+        "src/modules/BrowsePage.tsx"
+      ],
+      "route": "/browse"
+    },
+    {
+      "id": "inc-11",
+      "title": "Spec sheet and utilization chart",
+      "ownedFiles": [
+        "src/modules/SpecSheetAndUtilizationChart.tsx"
+      ],
+      "route": "/listings/:slug"
+    },
+    {
+      "id": "inc-12",
+      "title": "Availability calendar",
+      "ownedFiles": [
+        "src/modules/AvailabilityCalendar.tsx"
+      ],
+      "route": "/listings/:slug"
+    },
+    {
+      "id": "inc-13",
+      "title": "Reservation form with live pricing",
+      "ownedFiles": [
+        "src/modules/ReservationFormWithLivePricing.tsx"
+      ],
+      "route": "/listings/:slug"
+    },
+    {
+      "id": "inc-14",
+      "title": "Dashboard",
+      "ownedFiles": [
+        "src/modules/Dashboard.tsx"
+      ],
+      "route": "/dashboard"
+    },
+    {
+      "id": "inc-15",
+      "title": "Compare page",
+      "ownedFiles": [
+        "src/modules/ComparePage.tsx"
+      ],
+      "route": "/compare"
+    },
+    {
+      "id": "inc-16",
+      "title": "Not-found page",
+      "ownedFiles": [
+        "src/modules/NotFoundPage.tsx"
+      ]
+    },
+    {
+      "id": "inc-17",
+      "title": "Polish",
+      "ownedFiles": [
+        "src/modules/Polish.tsx"
+      ]
+    }
+  ],
+  "entries": [],
+  "planIncrements": [
+    {
+      "id": "inc-1",
+      "title": "App shell",
+      "kind": "skeleton",
+      "objective": "Render the SILICON EXCHANGE shell with nav, all six routes mounted empty, and a theme toggle, with no data or behavior.",
+      "scopeBoundary": [
+        "Typed mock data",
+        "Overlap detection",
+        "Pricing math",
+        "Hold expiry",
+        "Maintenance blocking",
+        "Filter and sort logic",
+        "Shared state and persistence",
+        "Home page",
+        "Browse page",
+        "Spec sheet and utilization chart",
+        "Availability calendar",
+        "Reservation form with live pricing",
+        "Dashboard",
+        "Compare page",
+        "Not-found page",
+        "Polish"
+      ],
+      "acceptanceCriteria": [
+        "App builds and opens showing nav and an empty home surface",
+        "All six routes render without error",
+        "Theme toggle is visible and clickable"
+      ]
+    },
+    {
+      "id": "inc-2",
+      "title": "Typed mock data",
+      "kind": "capability",
+      "objective": "Define 24 listings, seeded utilization samples, and pre-existing reservations as typed constants in src/data.",
+      "scopeBoundary": [
+        "Overlap detection",
+        "Pricing math",
+        "Hold expiry",
+        "Maintenance blocking",
+        "Filter and sort logic",
+        "Shared state and persistence",
+        "Home page",
+        "Browse page",
+        "Spec sheet and utilization chart",
+        "Availability calendar",
+        "Reservation form with live pricing",
+        "Dashboard",
+        "Compare page",
+        "Not-found page",
+        "Polish"
+      ],
+      "acceptanceCriteria": [
+        "24 listings span ≥5 regions with realistic chips, memory, TFLOPS, integer-cent rates, and status",
+        "Utilization samples are deterministic via seeded PRNG, no Math.random",
+        "At least one pre-existing reservation pair would pass a naive overlap check"
+      ]
+    },
+    {
+      "id": "inc-3",
+      "title": "Overlap detection",
+      "kind": "capability",
+      "objective": "Implement pure overlap detection with half-open ranges and cancelled-reservation exclusion.",
+      "scopeBoundary": [
+        "Pricing math",
+        "Hold expiry",
+        "Maintenance blocking",
+        "Filter and sort logic",
+        "Shared state and persistence",
+        "Home page",
+        "Browse page",
+        "Spec sheet and utilization chart",
+        "Availability calendar",
+        "Reservation form with live pricing",
+        "Dashboard",
+        "Compare page",
+        "Not-found page",
+        "Polish"
+      ],
+      "acceptanceCriteria": [
+        "A reservation ending at 14:00 and one starting at 14:00 do NOT overlap",
+        "Cancelled reservations are ignored in overlap checks",
+        "Vitest covers the boundary and cancelled cases"
+      ]
+    },
+    {
+      "id": "inc-4",
+      "title": "Pricing math",
+      "kind": "capability",
+      "objective": "Implement pure pricing: 15-min round-up, 1-hr minimum, 10% off hours beyond 24, all integer cents.",
+      "scopeBoundary": [
+        "Hold expiry",
+        "Maintenance blocking",
+        "Filter and sort logic",
+        "Shared state and persistence",
+        "Home page",
+        "Browse page",
+        "Spec sheet and utilization chart",
+        "Availability calendar",
+        "Reservation form with live pricing",
+        "Dashboard",
+        "Compare page",
+        "Not-found page",
+        "Polish"
+      ],
+      "acceptanceCriteria": [
+        "A 10-minute reservation bills as 1 hour",
+        "A 25-hour reservation applies 10% off only the 25th hour",
+        "Vitest covers round-up, minimum, and over-24h discount"
+      ]
+    },
+    {
+      "id": "inc-5",
+      "title": "Hold expiry",
+      "kind": "capability",
+      "objective": "Implement pure hold-expiry: a held reservation older than 10 minutes is expired and frees its slot.",
+      "scopeBoundary": [
+        "Maintenance blocking",
+        "Filter and sort logic",
+        "Shared state and persistence",
+        "Home page",
+        "Browse page",
+        "Spec sheet and utilization chart",
+        "Availability calendar",
+        "Reservation form with live pricing",
+        "Dashboard",
+        "Compare page",
+        "Not-found page",
+        "Polish"
+      ],
+      "acceptanceCriteria": [
+        "A hold at exactly 10:00 is not expired; at 10:01 it is",
+        "Expired holds free their time slot",
+        "Vitest covers the 10-minute boundary"
+      ]
+    },
+    {
+      "id": "inc-6",
+      "title": "Maintenance blocking",
+      "kind": "capability",
+      "objective": "Implement pure rule: maintenance listings reject new reservations but retain confirmed ones.",
+      "scopeBoundary": [
+        "Filter and sort logic",
+        "Shared state and persistence",
+        "Home page",
+        "Browse page",
+        "Spec sheet and utilization chart",
+        "Availability calendar",
+        "Reservation form with live pricing",
+        "Dashboard",
+        "Compare page",
+        "Not-found page",
+        "Polish"
+      ],
+      "acceptanceCriteria": [
+        "A maintenance listing returns no available slots for new bookings",
+        "Existing confirmed reservations on a maintenance listing remain intact",
+        "Vitest covers both cases"
+      ]
+    },
+    {
+      "id": "inc-7",
+      "title": "Filter and sort logic",
+      "kind": "capability",
+      "objective": "Implement pure filter/sort: search, region, memory range, status, and sort by price, memory, TFLOPS, utilization.",
+      "scopeBoundary": [
+        "Shared state and persistence",
+        "Home page",
+        "Browse page",
+        "Spec sheet and utilization chart",
+        "Availability calendar",
+        "Reservation form with live pricing",
+        "Dashboard",
+        "Compare page",
+        "Not-found page",
+        "Polish"
+      ],
+      "acceptanceCriteria": [
+        "A combined query (region + memory range + sort by TFLOPS) returns the correct ordered subset",
+        "Empty result set returned when no listing matches",
+        "Vitest covers a combined multi-criteria query"
+      ]
+    },
+    {
+      "id": "inc-8",
+      "title": "Shared state and persistence",
+      "kind": "capability",
+      "objective": "Wire React context + reducer for reservations and compare selection, persisted to localStorage.",
+      "scopeBoundary": [
+        "Home page",
+        "Browse page",
+        "Spec sheet and utilization chart",
+        "Availability calendar",
+        "Reservation form with live pricing",
+        "Dashboard",
+        "Compare page",
+        "Not-found page",
+        "Polish"
+      ],
+      "acceptanceCriteria": [
+        "A new reservation survives a full page reload",
+        "Compare selection persists across route navigation",
+        "Reducer handles add, confirm, cancel, and expire actions"
+      ]
+    },
+    {
+      "id": "inc-9",
+      "title": "Home page",
+      "kind": "capability",
+      "objective": "Render the home hero, live GPU-online counter from mock data, three feature cards, and a CTA to /browse.",
+      "scopeBoundary": [
+        "Browse page",
+        "Spec sheet and utilization chart",
+        "Availability calendar",
+        "Reservation form with live pricing",
+        "Dashboard",
+        "Compare page",
+        "Not-found page",
+        "Polish"
+      ],
+      "acceptanceCriteria": [
+        "GPU counter equals the count of available-status listings",
+        "CTA navigates to /browse",
+        "Three feature cards are visible"
+      ],
+      "route": "/"
+    },
+    {
+      "id": "inc-10",
+      "title": "Browse page",
+      "kind": "capability",
+      "objective": "Render a filterable, sortable listing grid with URL-query-string state and an empty state.",
+      "scopeBoundary": [
+        "Spec sheet and utilization chart",
+        "Availability calendar",
+        "Reservation form with live pricing",
+        "Dashboard",
+        "Compare page",
+        "Not-found page",
+        "Polish"
+      ],
+      "acceptanceCriteria": [
+        "Search, region, memory, status filters and sort all update the grid live",
+        "Filter state survives refresh and browser back button",
+        "Empty state message shows when no listings match"
+      ],
+      "route": "/browse"
+    },
+    {
+      "id": "inc-11",
+      "title": "Spec sheet and utilization chart",
+      "kind": "capability",
+      "objective": "Render the spec sheet and a 24-hour inline-SVG utilization line chart with hover tooltip.",
+      "scopeBoundary": [
+        "Availability calendar",
+        "Reservation form with live pricing",
+        "Dashboard",
+        "Compare page",
+        "Not-found page",
+        "Polish"
+      ],
+      "acceptanceCriteria": [
+        "Spec sheet shows chip, memory, TFLOPS, rate, and status",
+        "Hovering the chart shows a tooltip with hour and percentage",
+        "A text summary alternative for the chart is present"
+      ],
+      "route": "/listings/:slug"
+    },
+    {
+      "id": "inc-12",
+      "title": "Availability calendar",
+      "kind": "capability",
+      "objective": "Render a 7-day calendar that visually blocks out taken and held time slots.",
+      "scopeBoundary": [
+        "Reservation form with live pricing",
+        "Dashboard",
+        "Compare page",
+        "Not-found page",
+        "Polish"
+      ],
+      "acceptanceCriteria": [
+        "Confirmed-reservation slots appear blocked",
+        "Held slots appear in a distinct state",
+        "Maintenance listings show all slots blocked for new bookings"
+      ],
+      "route": "/listings/:slug"
+    },
+    {
+      "id": "inc-13",
+      "title": "Reservation form with live pricing",
+      "kind": "capability",
+      "objective": "Add a reservation form with time-range picker and a live quote showing base hours, rounding, and discount.",
+      "scopeBoundary": [
+        "Dashboard",
+        "Compare page",
+        "Not-found page",
+        "Polish"
+      ],
+      "acceptanceCriteria": [
+        "Adjusting the time range recalculates the quote in real time",
+        "Breakdown shows base hours, rounding applied, and discount applied",
+        "Submitting creates a held reservation visible in the calendar"
+      ],
+      "route": "/listings/:slug"
+    },
+    {
+      "id": "inc-14",
+      "title": "Dashboard",
+      "kind": "capability",
+      "objective": "Show the user's reservations with countdown timers on held ones, cancel buttons, and running total spend.",
+      "scopeBoundary": [
+        "Compare page",
+        "Not-found page",
+        "Polish"
+      ],
+      "acceptanceCriteria": [
+        "Held reservations display a live countdown to expiry",
+        "Cancelling a reservation removes it and frees its slot",
+        "Total spend sums all confirmed reservations in integer cents"
+      ],
+      "route": "/dashboard"
+    },
+    {
+      "id": "inc-15",
+      "title": "Compare page",
+      "kind": "capability",
+      "objective": "Allow selecting up to 3 listings and diff their specs side by side.",
+      "scopeBoundary": [
+        "Not-found page",
+        "Polish"
+      ],
+      "acceptanceCriteria": [
+        "Selecting a 4th listing is blocked",
+        "Specs render in aligned columns for up to 3 listings",
+        "Selection persists when navigating away and back"
+      ],
+      "route": "/compare"
+    },
+    {
+      "id": "inc-16",
+      "title": "Not-found page",
+      "kind": "capability",
+      "objective": "Render a custom on-brand 404 page for unmatched routes.",
+      "scopeBoundary": [
+        "Polish"
+      ],
+      "acceptanceCriteria": [
+        "Navigating to an unknown path shows the custom 404",
+        "The 404 page includes a link back to home"
+      ]
+    },
+    {
+      "id": "inc-17",
+      "title": "Polish",
+      "kind": "polish",
+      "objective": "Apply the dark-first industrial theme, light-mode toggle, responsive layout, accessibility, and transitions across all routes.",
+      "scopeBoundary": [],
+      "acceptanceCriteria": [
+        "Dark and light themes render with no flash on reload; toggle persists",
+        "Layout is responsive 375 px to 4K; tables collapse to cards on mobile",
+        "All controls have visible focus states, aria labels, and keyboard navigation works",
+        "All numeric values (prices, TFLOPS, memory, utilization percentages) and listing identifiers/slug IDs render in a monospace font family, distinguishable from the body sans-serif.",
+        "With DevTools network set to Offline, every page renders all visuals (charts, icons, backgrounds) correctly with zero failed network requests in the console."
+      ]
+    }
+  ],
+  "updatedAt": "2026-09-02T05:19:05.352Z"
+}
