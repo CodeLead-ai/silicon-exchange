@@ -648,7 +648,20 @@
       ],
       "verified": true,
       "verifiedAt": "2026-09-02T07:27:06.237Z"
+    },
+    {
+      "id": "inc-13",
+      "title": "Reservation form with live pricing",
+      "objective": "Add a reservation form with time-range picker and a live quote showing base hours, rounding, and discount.",
+      "filesTouched": [],
+      "acceptanceCriteria": [
+        "Adjusting the time range recalculates the quote in real time",
+        "Breakdown shows base hours, rounding applied, and discount applied",
+        "Submitting creates a held reservation visible in the calendar"
+      ],
+      "verified": true,
+      "verifiedAt": "2026-09-02T07:40:03.744Z"
     }
   ],
-  "updatedAt": "2026-09-02T07:27:06.237Z"
+  "updatedAt": "2026-09-02T07:40:03.744Z"
 }
