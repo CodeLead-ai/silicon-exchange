@@ -596,7 +596,20 @@
       ],
       "verified": true,
       "verifiedAt": "2026-09-02T06:33:58.768Z"
+    },
+    {
+      "id": "inc-9",
+      "title": "Home page",
+      "objective": "Render the home hero, live GPU-online counter from mock data, three feature cards, and a CTA to /browse.",
+      "filesTouched": [],
+      "acceptanceCriteria": [
+        "GPU counter equals the count of available-status listings",
+        "CTA navigates to /browse",
+        "Three feature cards are visible"
+      ],
+      "verified": true,
+      "verifiedAt": "2026-09-02T06:47:46.449Z"
     }
   ],
-  "updatedAt": "2026-09-02T06:33:58.768Z"
+  "updatedAt": "2026-09-02T06:47:46.449Z"
 }
