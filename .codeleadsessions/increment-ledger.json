@@ -570,7 +570,20 @@
       ],
       "verified": true,
       "verifiedAt": "2026-09-02T06:11:35.585Z"
+    },
+    {
+      "id": "inc-7",
+      "title": "Filter and sort logic",
+      "objective": "Implement pure filter/sort: search, region, memory range, status, and sort by price, memory, TFLOPS, utilization.",
+      "filesTouched": [],
+      "acceptanceCriteria": [
+        "A combined query (region + memory range + sort by TFLOPS) returns the correct ordered subset",
+        "Empty result set returned when no listing matches",
+        "Vitest covers a combined multi-criteria query"
+      ],
+      "verified": true,
+      "verifiedAt": "2026-09-02T06:22:43.949Z"
     }
   ],
-  "updatedAt": "2026-09-02T06:11:35.585Z"
+  "updatedAt": "2026-09-02T06:22:43.949Z"
 }

@@ -4,7 +4,6 @@ import { PricingMath } from "../modules/PricingMath";
 import { HoldExpiry } from "../modules/HoldExpiry";
 import { MaintenanceBlocking } from "../modules/MaintenanceBlocking";
 import { FilterAndSortLogic } from "../modules/FilterAndSortLogic";
-import { SharedStateAndPersistence } from "../modules/SharedStateAndPersistence";
 import { HomePage as HomePageModule } from "../modules/HomePage";
 import { NotFoundPage } from "../modules/NotFoundPage";
 import { Polish } from "../modules/Polish";
@@ -22,7 +21,6 @@ export function HomePage() {
       <HoldExpiry />
       <MaintenanceBlocking />
       <FilterAndSortLogic />
-      <SharedStateAndPersistence />
       <HomePageModule />
       <NotFoundPage />
       <Polish />
