@@ -518,7 +518,20 @@
       ],
       "verified": true,
       "verifiedAt": "2026-09-02T05:31:35.158Z"
+    },
+    {
+      "id": "inc-3",
+      "title": "Overlap detection",
+      "objective": "Implement pure overlap detection with half-open ranges and cancelled-reservation exclusion.",
+      "filesTouched": [],
+      "acceptanceCriteria": [
+        "A reservation ending at 14:00 and one starting at 14:00 do NOT overlap",
+        "Cancelled reservations are ignored in overlap checks",
+        "Vitest covers the boundary and cancelled cases"
+      ],
+      "verified": true,
+      "verifiedAt": "2026-09-02T05:41:56.918Z"
     }
   ],
-  "updatedAt": "2026-09-02T05:31:35.158Z"
+  "updatedAt": "2026-09-02T05:41:56.918Z"
 }
