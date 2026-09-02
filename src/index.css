@@ -105,3 +105,86 @@ canvas { display: block; max-width: 100%; border-radius: var(--radius-lg); box-s
 .nav__item { padding: var(--space-2) var(--space-3); border-radius: var(--radius); color: var(--text); text-decoration: none; cursor: pointer; }
 .nav__item:hover { background: var(--surface-2); } .nav__item--active { background: var(--primary); color: var(--primary-ink); }
 .canvas-frame { background: #101321; border-radius: var(--radius-lg); box-shadow: var(--shadow); display: block; max-width: 100%; }
+
+/* ─── Light theme (data-theme="light" on <html>) ──────────────────────────── */
+[data-theme="light"] {
+  --bg: #f8f9fb; --surface: #ffffff; --surface-2: #f1f3f5; --border: #d1d5db;
+  --text: #1a1d23; --muted: #6b7280; --primary: #0e7490; --primary-ink: #ffffff;
+  --accent: #0e7490; --ok: #059669; --warn: #d97706; --danger: #dc2626;
+  --shadow: 0 1px 2px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.08);
+}
+
+/* Theme transition (smooth swap, no flash) */
+body, .topbar, .panel, .card, .stat, .table, .btn, .input, .select, .textarea,
+main > section, main > article, .empty, .kicker, .badge {
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+
+/* ─── Responsive: 375 px → 4K ─────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .app { padding: var(--space-3); }
+  .main--page { padding: var(--space-4) var(--space-3) var(--space-6); }
+  .topbar__inner { padding: 0 var(--space-3); gap: var(--space-3); }
+  .topbar .app__nav { gap: var(--space-1); }
+  .topbar .nav__item { padding: 0.3rem 0.5rem; font-size: var(--text-sm); }
+  .grid { grid-template-columns: 1fr; }
+  .metrics { grid-template-columns: 1fr; }
+  .statrow { grid-template-columns: 1fr 1fr; }
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .toolbar .input, .toolbar .select { max-width: 100% !important; }
+
+  /* Table → card collapse */
+  .table thead { display: none; }
+  .table, .table tbody, .table tr, .table td { display: block; width: 100%; }
+  .table { border: 0; border-radius: 0; overflow: visible; }
+  .table tr { border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: var(--space-3); background: var(--surface); overflow: hidden; }
+  .table td { border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-3); }
+  .table td:last-child { border-bottom: 0; }
+  .table td::before { content: attr(data-label); font-size: var(--text-sm); color: var(--muted); font-weight: 600; flex-shrink: 0; }
+  .table td:empty::before, .table td[data-label=""]::before { content: ""; }
+}
+
+@media (max-width: 479px) {
+  .statrow { grid-template-columns: 1fr; }
+  .card { padding: var(--space-3); }
+  .panel--pad { padding: var(--space-3); }
+  .topbar .app__nav { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
+
+@media (min-width: 2000px) {
+  .app { max-width: 90rem; }
+  .main--page { max-width: 1400px; }
+  .topbar__inner { max-width: 1400px; }
+}
+
+/* ─── Accessibility: focus, reduced motion ────────────────────────────────── */
+.nav__item:focus-visible,
+.topbar .nav__item:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ─── Theme toggle button ─────────────────────────────────────────────────── */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-1) var(--space-2);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: color 120ms, border-color 120ms, background-color 200ms ease;
+}
+.theme-toggle:hover { color: var(--text); border-color: var(--muted); }
+.theme-toggle:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.theme-toggle svg { width: 18px; height: 18px; }

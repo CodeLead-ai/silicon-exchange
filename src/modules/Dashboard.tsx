@@ -120,7 +120,7 @@ export function Dashboard() {
 
             return (
               <tr key={r.id}>
-                <td>
+                <td data-label="Listing">
                   <span className="mono">{r.listingSlug}</span>
                   {listing && (
                     <span
@@ -131,10 +131,10 @@ export function Dashboard() {
                     </span>
                   )}
                 </td>
-                <td className="num">
+                <td className="num" data-label="Window">
                   {formatDateTime(r.start)} → {formatDateTime(r.end)}
                 </td>
-                <td>
+                <td data-label="Status">
                   {r.status === "held" ? (
                     <span className="status status--maintenance">
                       <span className="dot" />
@@ -148,8 +148,8 @@ export function Dashboard() {
                     </span>
                   )}
                 </td>
-                <td className="num">${(costCents / 100).toFixed(2)}</td>
-                <td>
+                <td className="num" data-label="Cost">${(costCents / 100).toFixed(2)}</td>
+                <td data-label="">
                   <button
                     className="btn btn--ghost"
                     onClick={() => handleCancel(r.id)}

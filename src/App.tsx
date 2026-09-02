@@ -6,6 +6,7 @@ import { ListingsSlugPage } from "./pages/ListingsSlugPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { ComparePage } from "./pages/ComparePage";
 import { NotFoundPage } from "./modules/NotFoundPage";
+import { ThemeToggle } from "./modules/Polish";
 
 /**
  * Routed app shell: ONE page component per route, each page its route's
@@ -21,12 +22,13 @@ export default function App() {
           <header className="topbar">
             <div className="topbar__inner">
               <span className="brand app__title">Silicon Exchange</span>
-              <nav className="nav app__nav">
+              <nav className="nav app__nav" aria-label="Main navigation">
                 <NavLink to="/" end className={({ isActive }) => isActive ? "nav__item nav__item--active" : "nav__item"}>Home</NavLink>
                 <NavLink to="/browse" className={({ isActive }) => isActive ? "nav__item nav__item--active" : "nav__item"}>Browse</NavLink>
                 <NavLink to="/dashboard" className={({ isActive }) => isActive ? "nav__item nav__item--active" : "nav__item"}>Dashboard</NavLink>
                 <NavLink to="/compare" className={({ isActive }) => isActive ? "nav__item nav__item--active" : "nav__item"}>Compare</NavLink>
               </nav>
+              <ThemeToggle />
             </div>
           </header>
           <main className="app__main main--page">
