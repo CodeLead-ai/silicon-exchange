@@ -635,7 +635,20 @@
       ],
       "verified": true,
       "verifiedAt": "2026-09-02T07:14:34.756Z"
+    },
+    {
+      "id": "inc-12",
+      "title": "Availability calendar",
+      "objective": "Render a 7-day calendar that visually blocks out taken and held time slots.",
+      "filesTouched": [],
+      "acceptanceCriteria": [
+        "Confirmed-reservation slots appear blocked",
+        "Held slots appear in a distinct state",
+        "Maintenance listings show all slots blocked for new bookings"
+      ],
+      "verified": true,
+      "verifiedAt": "2026-09-02T07:27:06.237Z"
     }
   ],
-  "updatedAt": "2026-09-02T07:14:34.756Z"
+  "updatedAt": "2026-09-02T07:27:06.237Z"
 }

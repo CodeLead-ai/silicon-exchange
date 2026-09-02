@@ -41,6 +41,73 @@ export function calculatePrice(
   return Math.round(totalCents);
 }
 
+// ─── Breakdown ───────────────────────────────────────────────────────────────
+
+export interface PricingBreakdown {
+  /** Raw duration in minutes. */
+  baseMinutes: number;
+  /** Raw duration in hours (may be fractional). */
+  baseHours: number;
+  /** Duration after 15-min round-up. */
+  roundedMinutes: number;
+  /** Duration after 1-hour minimum applied. */
+  billedMinutes: number;
+  /** Human-readable rounding note. */
+  roundingNote: string;
+  /** Whether the >24 h discount was applied. */
+  discountApplied: boolean;
+  /** Human-readable discount note. */
+  discountNote: string;
+  /** Final price in integer cents. */
+  totalCents: number;
+}
+
+function fmtHours(minutes: number): string {
+  const h = minutes / 60;
+  return h % 1 === 0 ? `${h}` : h.toFixed(1);
+}
+
+/**
+ * Returns a full pricing breakdown for a given duration and rate.
+ * Mirrors the logic in {@link calculatePrice} but exposes intermediate values.
+ */
+export function getPricingBreakdown(
+  durationMinutes: number,
+  hourlyRateCents: number,
+): PricingBreakdown {
+  const roundedMinutes = Math.ceil(durationMinutes / QUARTER_HOUR) * QUARTER_HOUR;
+  const billedMinutes = Math.max(roundedMinutes, MINIMUM_MINUTES);
+
+  // Rounding note
+  let roundingNote: string;
+  if (billedMinutes > durationMinutes) {
+    if (roundedMinutes > durationMinutes) {
+      roundingNote = `${fmtHours(billedMinutes)} hr (15-min)`;
+    } else {
+      roundingNote = `${fmtHours(billedMinutes)} hr (min)`;
+    }
+  } else {
+    roundingNote = `${fmtHours(billedMinutes)} hr`;
+  }
+
+  // Discount note
+  const discountApplied = billedMinutes > FULL_RATE_MINUTES;
+  const discountNote = discountApplied ? "10% off >24 h" : "—";
+
+  const totalCents = calculatePrice(durationMinutes, hourlyRateCents);
+
+  return {
+    baseMinutes: durationMinutes,
+    baseHours: durationMinutes / 60,
+    roundedMinutes,
+    billedMinutes,
+    roundingNote,
+    discountApplied,
+    discountNote,
+    totalCents,
+  };
+}
+
 export function PricingMath() {
   return null;
 }

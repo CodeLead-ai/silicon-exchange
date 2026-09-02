@@ -20,7 +20,7 @@ export function ListingsSlugPage() {
     <>
       <SpecSheetAndUtilizationChart listing={listing} />
       <AvailabilityCalendar listing={listing} />
-      <ReservationFormWithLivePricing />
+      <ReservationFormWithLivePricing listing={listing} />
     </>
   );
 }
