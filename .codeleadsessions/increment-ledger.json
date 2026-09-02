@@ -126,7 +126,6 @@
       ]
     }
   ],
-  "entries": [],
   "planIncrements": [
     {
       "id": "inc-1",
@@ -493,5 +492,20 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-02T05:19:05.352Z"
+  "entries": [
+    {
+      "id": "inc-1",
+      "title": "App shell",
+      "objective": "Render the SILICON EXCHANGE shell with nav, all six routes mounted empty, and a theme toggle, with no data or behavior.",
+      "filesTouched": [],
+      "acceptanceCriteria": [
+        "App builds and opens showing nav and an empty home surface",
+        "All six routes render without error",
+        "Theme toggle is visible and clickable"
+      ],
+      "verified": true,
+      "verifiedAt": "2026-09-02T05:19:08.944Z"
+    }
+  ],
+  "updatedAt": "2026-09-02T05:19:08.944Z"
 }
