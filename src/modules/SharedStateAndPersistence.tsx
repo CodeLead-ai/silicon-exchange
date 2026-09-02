@@ -43,7 +43,7 @@ export type AppAction =
 // ─── Constants ───────────────────────────────────────────────────────────────
 
 const STORAGE_KEY = "silicon-exchange-state";
-const COMPARE_MAX = 4;
+const COMPARE_MAX = 3;
 
 // ─── Reducer ─────────────────────────────────────────────────────────────────
 

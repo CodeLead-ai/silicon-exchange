@@ -661,7 +661,20 @@
       ],
       "verified": true,
       "verifiedAt": "2026-09-02T07:40:03.744Z"
+    },
+    {
+      "id": "inc-14",
+      "title": "Dashboard",
+      "objective": "Show the user's reservations with countdown timers on held ones, cancel buttons, and running total spend.",
+      "filesTouched": [],
+      "acceptanceCriteria": [
+        "Held reservations display a live countdown to expiry",
+        "Cancelling a reservation removes it and frees its slot",
+        "Total spend sums all confirmed reservations in integer cents"
+      ],
+      "verified": true,
+      "verifiedAt": "2026-09-02T07:53:50.198Z"
     }
   ],
-  "updatedAt": "2026-09-02T07:40:03.744Z"
+  "updatedAt": "2026-09-02T07:53:50.198Z"
 }
