@@ -1,15 +1,46 @@
 /**
  * Overlap detection — owned by increment inc-3.
  *
- * Placeholder created by the deterministic skeleton. It renders NOTHING
- * until its increment lands. Implement the capability HERE, in this file:
- * render only what the user should see for it, inside the app's single
- * surface — no heading or card naming the capability, no status text.
- * If the capability needs an element another module already renders
- * (the game canvas, the list, the form), extend that module rather than
- * rendering a second one; if no module renders it yet, create it here
- * once so later increments can extend it.
+ * Pure half-open range overlap with cancelled-reservation exclusion.
+ * Renders nothing; exports pure functions for downstream modules.
  */
+
+export interface ReservationLike {
+  start: string;
+  end: string;
+  status: string;
+}
+
+const CANCELLED = 'cancelled';
+
+/**
+ * Half-open interval overlap: [startA, endA) ∩ [startB, endB) ≠ ∅.
+ * A reservation ending at T and another starting at T do NOT overlap.
+ */
+export function rangesOverlap(
+  startA: string,
+  endA: string,
+  startB: string,
+  endB: string,
+): boolean {
+  return startA < endB && startB < endA;
+}
+
+/**
+ * Returns all non-cancelled reservations in `existing` that overlap `candidate`.
+ * Cancelled reservations are excluded from the check entirely.
+ */
+export function findConflicts(
+  candidate: ReservationLike,
+  existing: ReservationLike[],
+): ReservationLike[] {
+  return existing.filter(
+    (r) =>
+      r.status !== CANCELLED &&
+      rangesOverlap(candidate.start, candidate.end, r.start, r.end),
+  );
+}
+
 export function OverlapDetection() {
   return null;
 }

@@ -505,7 +505,20 @@
       ],
       "verified": true,
       "verifiedAt": "2026-09-02T05:19:08.944Z"
+    },
+    {
+      "id": "inc-2",
+      "title": "Typed mock data",
+      "objective": "Define 24 listings, seeded utilization samples, and pre-existing reservations as typed constants in src/data.",
+      "filesTouched": [],
+      "acceptanceCriteria": [
+        "24 listings span ≥5 regions with realistic chips, memory, TFLOPS, integer-cent rates, and status",
+        "Utilization samples are deterministic via seeded PRNG, no Math.random",
+        "At least one pre-existing reservation pair would pass a naive overlap check"
+      ],
+      "verified": true,
+      "verifiedAt": "2026-09-02T05:31:35.158Z"
     }
   ],
-  "updatedAt": "2026-09-02T05:19:08.944Z"
+  "updatedAt": "2026-09-02T05:31:35.158Z"
 }
