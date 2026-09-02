@@ -583,7 +583,20 @@
       ],
       "verified": true,
       "verifiedAt": "2026-09-02T06:22:43.949Z"
+    },
+    {
+      "id": "inc-8",
+      "title": "Shared state and persistence",
+      "objective": "Wire React context + reducer for reservations and compare selection, persisted to localStorage.",
+      "filesTouched": [],
+      "acceptanceCriteria": [
+        "A new reservation survives a full page reload",
+        "Compare selection persists across route navigation",
+        "Reducer handles add, confirm, cancel, and expire actions"
+      ],
+      "verified": true,
+      "verifiedAt": "2026-09-02T06:33:58.768Z"
     }
   ],
-  "updatedAt": "2026-09-02T06:22:43.949Z"
+  "updatedAt": "2026-09-02T06:33:58.768Z"
 }
