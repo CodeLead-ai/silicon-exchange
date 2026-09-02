@@ -557,7 +557,20 @@
       ],
       "verified": true,
       "verifiedAt": "2026-09-02T06:04:23.507Z"
+    },
+    {
+      "id": "inc-6",
+      "title": "Maintenance blocking",
+      "objective": "Implement pure rule: maintenance listings reject new reservations but retain confirmed ones.",
+      "filesTouched": [],
+      "acceptanceCriteria": [
+        "A maintenance listing returns no available slots for new bookings",
+        "Existing confirmed reservations on a maintenance listing remain intact",
+        "Vitest covers both cases"
+      ],
+      "verified": true,
+      "verifiedAt": "2026-09-02T06:11:35.585Z"
     }
   ],
-  "updatedAt": "2026-09-02T06:04:23.507Z"
+  "updatedAt": "2026-09-02T06:11:35.585Z"
 }
