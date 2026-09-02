@@ -1,15 +1,41 @@
 /**
  * Maintenance blocking — owned by increment inc-6.
  *
- * Placeholder created by the deterministic skeleton. It renders NOTHING
- * until its increment lands. Implement the capability HERE, in this file:
- * render only what the user should see for it, inside the app's single
- * surface — no heading or card naming the capability, no status text.
- * If the capability needs an element another module already renders
- * (the game canvas, the list, the form), extend that module rather than
- * rendering a second one; if no module renders it yet, create it here
- * once so later increments can extend it.
+ * Pure rule: maintenance listings reject new reservations but retain
+ * confirmed ones. Renders nothing; exports pure functions for
+ * downstream modules.
  */
+
+export interface ListingLike {
+  status: string;
+}
+
+export interface ReservationLike {
+  status: string;
+}
+
+const MAINTENANCE = 'maintenance';
+const CONFIRMED = 'confirmed';
+
+/**
+ * Returns true if the listing can accept new reservations.
+ * A listing in maintenance status rejects all new bookings.
+ */
+export function canAcceptNewReservation(listing: ListingLike): boolean {
+  return listing.status !== MAINTENANCE;
+}
+
+/**
+ * Returns confirmed reservations unchanged, regardless of listing status.
+ * Maintenance listings retain their existing confirmed reservations.
+ */
+export function getPreservedReservations<T extends ReservationLike>(
+  _listing: ListingLike,
+  reservations: T[],
+): T[] {
+  return reservations.filter((r) => r.status === CONFIRMED);
+}
+
 export function MaintenanceBlocking() {
   return null;
 }

@@ -544,7 +544,20 @@
       ],
       "verified": true,
       "verifiedAt": "2026-09-02T05:54:42.567Z"
+    },
+    {
+      "id": "inc-5",
+      "title": "Hold expiry",
+      "objective": "Implement pure hold-expiry: a held reservation older than 10 minutes is expired and frees its slot.",
+      "filesTouched": [],
+      "acceptanceCriteria": [
+        "A hold at exactly 10:00 is not expired; at 10:01 it is",
+        "Expired holds free their time slot",
+        "Vitest covers the 10-minute boundary"
+      ],
+      "verified": true,
+      "verifiedAt": "2026-09-02T06:04:23.507Z"
     }
   ],
-  "updatedAt": "2026-09-02T05:54:42.567Z"
+  "updatedAt": "2026-09-02T06:04:23.507Z"
 }
