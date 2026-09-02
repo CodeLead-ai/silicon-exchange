@@ -5,6 +5,7 @@ import { BrowsePage } from "./pages/BrowsePage";
 import { ListingsSlugPage } from "./pages/ListingsSlugPage";
 import { DashboardPage } from "./pages/DashboardPage";
 import { ComparePage } from "./pages/ComparePage";
+import { NotFoundPage } from "./modules/NotFoundPage";
 
 /**
  * Routed app shell: ONE page component per route, each page its route's
@@ -35,6 +36,7 @@ export default function App() {
               <Route path="/listings/:slug" element={<ListingsSlugPage />} />
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/compare" element={<ComparePage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </main>
         </div>

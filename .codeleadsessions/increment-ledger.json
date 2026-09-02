@@ -674,7 +674,20 @@
       ],
       "verified": true,
       "verifiedAt": "2026-09-02T07:53:50.198Z"
+    },
+    {
+      "id": "inc-15",
+      "title": "Compare page",
+      "objective": "Allow selecting up to 3 listings and diff their specs side by side.",
+      "filesTouched": [],
+      "acceptanceCriteria": [
+        "Selecting a 4th listing is blocked",
+        "Specs render in aligned columns for up to 3 listings",
+        "Selection persists when navigating away and back"
+      ],
+      "verified": true,
+      "verifiedAt": "2026-09-02T08:08:17.431Z"
     }
   ],
-  "updatedAt": "2026-09-02T07:53:50.198Z"
+  "updatedAt": "2026-09-02T08:08:17.431Z"
 }
