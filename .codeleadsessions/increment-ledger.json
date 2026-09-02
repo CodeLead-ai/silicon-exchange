@@ -687,7 +687,19 @@
       ],
       "verified": true,
       "verifiedAt": "2026-09-02T08:08:17.431Z"
+    },
+    {
+      "id": "inc-16",
+      "title": "Not-found page",
+      "objective": "Render a custom on-brand 404 page for unmatched routes.",
+      "filesTouched": [],
+      "acceptanceCriteria": [
+        "Navigating to an unknown path shows the custom 404",
+        "The 404 page includes a link back to home"
+      ],
+      "verified": true,
+      "verifiedAt": "2026-09-02T08:16:46.459Z"
     }
   ],
-  "updatedAt": "2026-09-02T08:08:17.431Z"
+  "updatedAt": "2026-09-02T08:16:46.459Z"
 }
