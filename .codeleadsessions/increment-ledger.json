@@ -699,7 +699,22 @@
       ],
       "verified": true,
       "verifiedAt": "2026-09-02T08:16:46.459Z"
+    },
+    {
+      "id": "inc-17",
+      "title": "Polish",
+      "objective": "Apply the dark-first industrial theme, light-mode toggle, responsive layout, accessibility, and transitions across all routes.",
+      "filesTouched": [],
+      "acceptanceCriteria": [
+        "Dark and light themes render with no flash on reload; toggle persists",
+        "Layout is responsive 375 px to 4K; tables collapse to cards on mobile",
+        "All controls have visible focus states, aria labels, and keyboard navigation works",
+        "All numeric values (prices, TFLOPS, memory, utilization percentages) and listing identifiers/slug IDs render in a monospace font family, distinguishable from the body sans-serif.",
+        "With DevTools network set to Offline, every page renders all visuals (charts, icons, backgrounds) correctly with zero failed network requests in the console."
+      ],
+      "verified": true,
+      "verifiedAt": "2026-09-02T08:58:03.896Z"
     }
   ],
-  "updatedAt": "2026-09-02T08:16:46.459Z"
+  "updatedAt": "2026-09-02T08:58:03.896Z"
 }

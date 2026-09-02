@@ -5,7 +5,6 @@ import { HoldExpiry } from "../modules/HoldExpiry";
 import { MaintenanceBlocking } from "../modules/MaintenanceBlocking";
 import { FilterAndSortLogic } from "../modules/FilterAndSortLogic";
 import { HomePage as HomePageModule } from "../modules/HomePage";
-import { NotFoundPage } from "../modules/NotFoundPage";
 import { Polish } from "../modules/Polish";
 
 /**
@@ -22,7 +21,6 @@ export function HomePage() {
       <MaintenanceBlocking />
       <FilterAndSortLogic />
       <HomePageModule />
-      <NotFoundPage />
       <Polish />
     </>
   );
