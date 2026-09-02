@@ -609,7 +609,20 @@
       ],
       "verified": true,
       "verifiedAt": "2026-09-02T06:47:46.449Z"
+    },
+    {
+      "id": "inc-10",
+      "title": "Browse page",
+      "objective": "Render a filterable, sortable listing grid with URL-query-string state and an empty state.",
+      "filesTouched": [],
+      "acceptanceCriteria": [
+        "Search, region, memory, status filters and sort all update the grid live",
+        "Filter state survives refresh and browser back button",
+        "Empty state message shows when no listings match"
+      ],
+      "verified": true,
+      "verifiedAt": "2026-09-02T07:00:43.676Z"
     }
   ],
-  "updatedAt": "2026-09-02T06:47:46.449Z"
+  "updatedAt": "2026-09-02T07:00:43.676Z"
 }
